@@ -178,6 +178,8 @@ class HealthRecordManager:
         for record in self.records:
             if record.id.startswith(prefix):
                 number_text = record.id[len(prefix):]
+                if not number_text.isdigit():
+                    continue
                 try:
                     number = int(number_text)
                 except ValueError:
@@ -262,7 +264,9 @@ class HealthRecordManager:
                                 row.append(record[field])
                             writer.writerow(row)
         except (OSError, csv.Error, TypeError, pickle.PickleError) as error:
-            raise StorageError(str(file_path) + " 저장에 실패했습니다: " + str(error))
+            raise StorageError(
+                str(file_path) + " 저장에 실패했습니다: " + str(error)
+            ) from error
 
         return file_path
 
@@ -306,7 +310,7 @@ class HealthRecordManager:
         ) as error:
             raise StorageError(
                 str(file_path) + " 불러오기에 실패했습니다: " + str(error)
-            )
+            ) from error
 
         self._check_unique_ids(records)
         self.records = records
