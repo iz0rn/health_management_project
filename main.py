@@ -1,6 +1,10 @@
 """간단한 건강정보 콘솔 프로그램입니다."""
 
-# - 사용자: 김민재
+# AI 사용 기록
+# - AI: OpenAI Copilot SDK
+# - 목적: 초보자가 이해하기 쉬운 콘솔 메뉴 작성
+# - 프롬프트: "대학 1학년 초가 이해할 수 있을 만큼 간단한 콘솔 TUI를 작성해줘."
+# - 사용자: 과제 제출자(이름 미제공)
 # - 사용일: 2026-11-23
 
 from modules.health_db import HealthRecordManager
